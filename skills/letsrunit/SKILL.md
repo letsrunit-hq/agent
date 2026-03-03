@@ -73,7 +73,7 @@ Scenario: User logs in with valid credentials
 
 | Step | Description |
 |------|-------------|
-| `Then The page {contains\|not contains} {locator}` | Assert an element is (or is not) visible on the page |
+| `Then the page {contains\|not contains} {locator}` | Assert an element is (or is not) visible on the page |
 | `Then {locator} {contains\|not contains} {locator}` | Assert a child element is (or is not) inside a parent element |
 | `Then I should be on page {string}` | Assert the current path matches exactly (supports `:param` patterns) |
 
