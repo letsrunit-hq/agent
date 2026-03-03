@@ -94,7 +94,7 @@ Locators identify elements on the page. Prefer natural language over raw CSS sel
 | `{tag}` | `div`, `section` | HTML tag name |
 | `` `selector` `` | `` `.btn-primary` `` | Raw Playwright selector (last resort) |
 
-**Scoping:** `button "Submit" within \`#checkout-form\` — scope to a parent element.
+**Scoping:** `` button "Submit" within `#checkout-form` `` — scope to a parent element.
 **Filtering:** `section with button "Save"` / `section without text "Expired"` — filter by descendants.
 
 **Rules:** prefer descriptive locators over attribute-based ones; use `link` for `<a>` tags; ensure locators are unambiguous.
