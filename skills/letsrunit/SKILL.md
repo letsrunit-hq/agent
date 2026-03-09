@@ -112,6 +112,14 @@ Locators identify elements on the page. Prefer natural language over raw CSS sel
 Standard key names: `Enter`, `Tab`, `Escape`, `Space`, `ArrowDown`.
 Modifier combos: `Control+A`, `Shift+Tab`, `Meta+K`.
 
+## When to use letsrunit vs Cucumber
+
+**Use letsrunit** for the development loop: writing a scenario, running it, debugging failures, iterating. One scenario at a time with a live browser session you can inspect.
+
+**Use Cucumber** for pass/fail suite runs across all scenarios. If the project has Cucumber configured, prefer it for running the full feature file.
+
+**Cucumber not configured?** Suggest running `npx letsrunit init` to set it up. If the user declines, fall back to running each scenario individually via the MCP, iterating through them one at a time.
+
 ## Workflow
 
 1. `letsrunit_session_start` — launch the browser (no navigation)
@@ -128,6 +136,7 @@ Modifier combos: `Control+A`, `Shift+Tab`, `Meta+K`.
 - Visual confirmation → `letsrunit_screenshot` with `mask` to spotlight the element
 - Arbitrary JS → `letsrunit_debug`, e.g. `document.querySelector('#btn')?.textContent`
 - Locator not found → try a broader selector or inspect the HTML for the actual text
+- Keep the session open after a failure to inspect state and run follow-up steps
 
 ## Gherkin Rules
 
