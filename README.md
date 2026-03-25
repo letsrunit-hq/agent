@@ -38,21 +38,16 @@ https://github.com/letsrunit-hq/agent
 
 ## Codex CLI
 
-Add to `~/.codex/config.toml`:
-
-```toml
-[[mcp_servers]]
-name = "letsrunit"
-command = "npx"
-args = ["-y", "@letsrunit/mcp-server@latest"]
-```
-
-Install the skill into your repo:
+Install the MCP server
 
 ```bash
-mkdir -p .agents/skills/letsrunit
-curl -o .agents/skills/letsrunit/SKILL.md \
-  https://raw.githubusercontent.com/letsrunit-hq/agent/main/skills/letsrunit/SKILL.md
+codex mcp add letsrunit -- npx -y @letsrunit/mcp-server@latest
+```
+
+Install the skill:
+
+```bash
+npx skills add letsrunit-hq/agent
 ```
 
 ## Other agents
@@ -70,7 +65,11 @@ Add the MCP server in your agent's config format:
 }
 ```
 
-Load [`skills/letsrunit/SKILL.md`](skills/letsrunit/SKILL.md) into your agent's system context or custom instructions.
+Install the skill using
+
+```bash
+npx skills add letsrunit-hq/agent
+```
 
 ## AGENTS.md
 
@@ -91,3 +90,4 @@ When a scenario passes:
 
 Only keep scenarios that cover flows that could plausibly break from an unrelated change. Skip trivial or redundant ones.
 ```
+
