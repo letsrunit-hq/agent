@@ -15,10 +15,12 @@ compatibility: Requires the letsrunit MCP server to be configured. See https://g
 | `letsrunit_debug` | Evaluate JavaScript on the current page. Returns `{ result, error? }`. For debugging only. |
 | `letsrunit_session_close` | Close the browser and release its resources. |
 | `letsrunit_list_sessions` | List all active sessions. |
+| `letsrunit_list_steps` | List available step definitions for the current session. Optional `type`: `Given`, `When`, `Then`. |
 
 ## Writing Tests
 
 Tests are written in Gherkin. Every test must start with a `Given I'm on page` or `Given I'm on the homepage` step to navigate.
+Do not assume step names from memory. Always call `letsrunit_list_steps` first and use that output as the source of truth.
 
 Relative paths (e.g. `"/login"`) require a `baseURL` set in `cucumber.js`:
 
@@ -40,42 +42,6 @@ Scenario: User logs in with valid credentials
   Then The page contains text "Dashboard"
   And I should be on page "/dashboard"
 ```
-
-## Available Steps
-
-### Given
-
-| Step | Description |
-|------|-------------|
-| `Given I'm on the homepage` | Navigate to `/` |
-| `Given I'm on page {string}` | Navigate to a path, e.g. `"/login"` |
-| `Given all popups are closed` | Dismiss cookie banners and modal overlays |
-
-### When (Actions)
-
-| Step | Description |
-|------|-------------|
-| `When I {click\|double-click\|right-click\|hover} {locator}` | Interact with an element |
-| `When I {click\|double-click\|right-click\|hover} {locator} while holding {keys}` | Interact while holding modifier keys |
-| `When I scroll {locator} into view` | Scroll element into the viewport |
-| `When I set {locator} to {value}` | Fill an input, select a dropdown option, or toggle a checkbox/switch |
-| `When I set {locator} to range of {value} to {value}` | Set a range input |
-| `When I clear {locator}` | Clear an input field |
-| `When I {check\|uncheck} {locator}` | Check or uncheck a checkbox or switch |
-| `When I {focus\|blur} {locator}` | Focus or blur an element |
-| `When I press {keys}` | Press a key or key combination, e.g. `Enter`, `Control+A` |
-| `When I type {string}` | Type text using the keyboard |
-| `When I copy {locator} to the clipboard` | Copy element content to clipboard |
-| `When I paste from the clipboard into {locator}` | Paste clipboard content into a field |
-| `When I go back to the previous page` | Browser back navigation |
-
-### Then (Assertions)
-
-| Step | Description |
-|------|-------------|
-| `Then the page {contains\|does not contain} {locator}` | Assert an element is (or is not) visible on the page |
-| `Then {locator} {contains\|does not contain} {locator}` | Assert a child element is (or is not) inside a parent element |
-| `Then I should be on page {string}` | Assert the current path matches exactly (supports `:param` patterns) |
 
 ## Locators
 
@@ -123,12 +89,13 @@ Modifier combos: `Control+A`, `Shift+Tab`, `Meta+K`.
 ## Workflow
 
 1. `letsrunit_session_start` — launch the browser (no navigation)
-2. `letsrunit_run` with `Given I'm on page "/path"` — navigate to the target URL
-3. Call `letsrunit_snapshot` when you need to inspect the DOM
-4. Propose **When** steps in small batches, run them, observe `status` and `steps`
-5. Generate **Then** assertions based on what actually happened
-6. `letsrunit_session_close` when done
-7. Return the complete Gherkin feature
+2. `letsrunit_list_steps` — discover the exact steps available in this runtime (optionally filter by `type`)
+3. `letsrunit_run` with `Given I'm on page "/path"` — navigate to the target URL
+4. Call `letsrunit_snapshot` when you need to inspect the DOM
+5. Propose **When** steps in small batches, run them, observe `status` and `steps`
+6. Generate **Then** assertions based on what actually happened
+7. `letsrunit_session_close` when done
+8. Return the complete Gherkin feature
 
 ## Debugging
 
