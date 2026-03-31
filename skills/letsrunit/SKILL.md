@@ -12,6 +12,7 @@ compatibility: Requires the letsrunit MCP server to be configured. See https://g
 | `letsrunit_run` | Execute Gherkin steps or a full feature. Returns `{ status, steps, reason?, journal }`. Does **not** return HTML. |
 | `letsrunit_snapshot` | Get scrubbed page HTML on demand. Accepts `selector` and scrub options. |
 | `letsrunit_screenshot` | Take a screenshot. Accepts `selector` (crop to element) and `mask` (spotlight elements). |
+| `letsrunit_diff` | Diff the current live page against the HTML snapshot from the last passing test of a scenario. Pass the `scenarioId` returned by `letsrunit_run`. |
 | `letsrunit_debug` | Evaluate JavaScript on the current page. Returns `{ result, error? }`. For debugging only. |
 | `letsrunit_session_close` | Close the browser and release its resources. |
 | `letsrunit_list_sessions` | List all active sessions. |
@@ -103,6 +104,7 @@ Modifier combos: `Control+A`, `Shift+Tab`, `Meta+K`.
 - Visual confirmation → `letsrunit_screenshot` with `mask` to spotlight the element
 - Arbitrary JS → `letsrunit_debug`, e.g. `document.querySelector('#btn')?.textContent`
 - Locator not found → try a broader selector or inspect the HTML for the actual text
+- Regression → `letsrunit_diff` with `scenarioId` to see what changed compared to the last passing test
 - Keep the session open after a failure to inspect state and run follow-up steps
 
 ## Gherkin Rules
