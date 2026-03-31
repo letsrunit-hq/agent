@@ -20,7 +20,7 @@ compatibility: Requires the letsrunit MCP server to be configured. See https://g
 
 ## Writing Tests
 
-Tests are written in Gherkin. Every test must start with a `Given I'm on page` or `Given I'm on the homepage` step to navigate.
+Tests are written in Gherkin. Every test must start with a `Given I'm on the homepage` or `Given I'm on page` step to navigate.
 Do not assume step names from memory. Always call `letsrunit_list_steps` first and use that output as the source of truth.
 
 Relative paths (e.g. `"/login"`) require a `baseURL` set in `cucumber.js`:
@@ -90,8 +90,8 @@ Modifier combos: `Control+A`, `Shift+Tab`, `Meta+K`.
 ## Workflow
 
 1. `letsrunit_session_start` — launch the browser (no navigation)
-2. `letsrunit_list_steps` — discover the exact steps available in this runtime (optionally filter by `type`)
-3. `letsrunit_run` with `Given I'm on page "/path"` — navigate to the target URL
+2. `letsrunit_list_steps` — discover all steps available in this runtime
+3. `letsrunit_run` with `Given I'm on the homepage` or `Given I'm on page "/path"` — navigate to the target URL
 4. Call `letsrunit_snapshot` when you need to inspect the DOM
 5. Propose **When** steps in small batches, run them, observe `status` and `steps`
 6. Generate **Then** assertions based on what actually happened
