@@ -40,7 +40,7 @@ Scenario: User logs in with valid credentials
   When I set field "email" to "user@example.com"
   And I set field "password" to "secret"
   And I click button "Sign in"
-  Then The page contains text "Dashboard"
+  Then the page contains text "Dashboard"
   And I should be on page "/dashboard"
 ```
 
