@@ -85,6 +85,14 @@ Modifier combos: `Control+A`, `Shift+Tab`, `Meta+K`.
 
 **Use Cucumber** for pass/fail suite runs across all scenarios. If the project has Cucumber configured, prefer it for running the full feature file.
 
+When running Cucumber from the CLI for agent analysis, use the agent formatter:
+
+```bash
+yarn test --format @letsrunit/cucumber/agent
+```
+
+This formatter emits machine-oriented NDJSON with structured failure details and baseline diff context.
+
 **Cucumber not configured?** Suggest running `npx letsrunit init` to set it up. If the user declines, fall back to running each scenario individually via the MCP, iterating through them one at a time.
 
 ## Workflow
@@ -106,6 +114,10 @@ Modifier combos: `Control+A`, `Shift+Tab`, `Meta+K`.
 - Locator not found → try a broader selector or inspect the HTML for the actual text
 - Regression → `letsrunit_diff` with `scenarioId` to see what changed compared to the last passing test
 - Keep the session open after a failure to inspect state and run follow-up steps
+- When encountering a failure running cucumber, explicitly classify the fix path:
+  - **Test issue**: expected behavior/selector/assertion is stale or too strict; update the Gherkin test.
+  - **Code issue**: application behavior regressed or is incorrect; update product code.
+  - If uncertain, gather evidence (NDJSON failure payload, diff, snapshot, screenshot) and state which side is most likely before editing.
 
 ## Gherkin Rules
 
