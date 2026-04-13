@@ -72,7 +72,14 @@ Locators identify elements on the page. Prefer natural language over raw CSS sel
 - **Number** — `42`
 - **Boolean** — `true` / `false`
 - **Date** — `date of tomorrow`, `date of 3 days ago`, `date of 8 weeks from now` or `date "2025-01-22"`
+- **Generated password** — `password of "user-uuid"` (requires `LETSRUNIT_PASSWORD_SEED`)
 - **Array** — `["Option A", "Option B"]`
+
+Set the seed in your environment before using generated passwords:
+
+```bash
+export LETSRUNIT_PASSWORD_SEED="my-fixed-seed"
+```
 
 ## Key Combinations
 
