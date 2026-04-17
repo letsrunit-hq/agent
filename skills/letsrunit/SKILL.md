@@ -85,14 +85,7 @@ Modifier combos: `Control+A`, `Shift+Tab`, `Meta+K`.
 **Use letsrunit** for the development loop: writing a scenario, running it, debugging failures, iterating. One scenario at a time with a live browser session you can inspect.
 
 **Use Cucumber** for pass/fail suite runs across all scenarios. If the project has Cucumber configured, prefer it for running the full feature file.
-
-When running Cucumber from the CLI for agent analysis, use the agent formatter:
-
-```bash
-yarn test --format @letsrunit/cucumber/agent
-```
-
-This formatter emits machine-oriented NDJSON with structured failure details and baseline diff context.
+Cubumber will switch to an agent friendly formatter that emits machine-oriented NDJSON with structured failure details and baseline diff context.
 
 **Cucumber not configured?** Suggest running `npx letsrunit init` to set it up. If the user declines, fall back to running each scenario individually via the MCP, iterating through them one at a time.
 
