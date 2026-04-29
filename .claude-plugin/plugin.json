@@ -1,6 +1,6 @@
 {
   "name": "letsrunit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generate and execute browser tests using Gherkin (Given/When/Then) syntax via a real Playwright browser",
   "author": {
     "name": "letsrunit-hq"

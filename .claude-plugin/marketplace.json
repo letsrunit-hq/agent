@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "letsrunit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "AI-powered browser test generation and execution using Gherkin syntax via Playwright",
   "owner": {
     "name": "letsrunit-hq"
@@ -10,7 +10,7 @@
     {
       "name": "letsrunit",
       "description": "Generate and execute browser tests using Gherkin (Given/When/Then) syntax via a real Playwright browser",
-      "source": "./plugins/letsrunit",
+      "source": ".",
       "category": "testing"
     }
   ]
